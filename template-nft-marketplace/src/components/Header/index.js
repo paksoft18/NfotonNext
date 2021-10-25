@@ -6,7 +6,6 @@ import Icon from "../Icon";
 import Image from "../Image";
 import Notification from "./Notification";
 import User from "./User";
-import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import Connect from "../Connect";
 
 const nav = [
@@ -31,7 +30,6 @@ const nav = [
 const Headers = () => {
   const [visibleNav, setVisibleNav] = useState(false);
   const [search, setSearch] = useState("");
-  const wallet = useAnchorWallet();
 
   const handleSubmit = (e) => {
     alert();

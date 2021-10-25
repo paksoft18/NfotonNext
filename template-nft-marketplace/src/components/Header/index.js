@@ -87,7 +87,7 @@ const Headers = () => {
           </Link>
         </div>
         <Notification className={styles.notification} />
-        {wallet ? <User className={styles.user} /> : <Connect />}
+        <Connect />
         <button
           className={cn(styles.burger, { [styles.active]: visibleNav })}
           onClick={() => setVisibleNav(!visibleNav)}

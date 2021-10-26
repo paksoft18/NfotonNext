@@ -9,11 +9,11 @@ module.exports = {
       },
       {
         source: "/:path*",
-        destination: "http://localhost:3001/:path*",
+        destination: `${process.env.NEXT_PUBLIC_REACT_BASE_URI}/:path*`,
       },
       {
         source: "/",
-        destination: "http://localhost:3001/",
+        destination: process.env.NEXT_PUBLIC_REACT_BASE_URI,
       },
     ];
   },

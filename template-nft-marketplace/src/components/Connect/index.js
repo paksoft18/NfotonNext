@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import {
   WalletDialogProvider,
   WalletMultiButton,
 } from "@solana/wallet-adapter-material-ui";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import { useEffect } from "react";
+
 const Connect = () => {
   const wallet = useAnchorWallet();
   

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import cn from "classnames";
 import styles from "./Header.module.sass";
@@ -7,20 +7,21 @@ import Image from "../Image";
 import Notification from "./Notification";
 import User from "./User";
 import Connect from "../Connect";
+import { useAnchorWallet } from "@solana/wallet-adapter-react";
 
 const nav = [
-  {
-    url: "/search01",
-    title: "Discover",
-  },
+  //   {
+  //     url: "/search01",
+  //     title: "Discover",
+  //   },
   {
     url: "/faq",
     title: "How it work",
   },
-  {
-    url: "/item",
-    title: "Create item",
-  },
+  //   {
+  //     url: "/item",
+  //     title: "Create item",
+  //   },
   {
     url: "/profile",
     title: "Profile",
@@ -28,6 +29,8 @@ const nav = [
 ];
 
 const Headers = () => {
+  const wallet = useAnchorWallet();
+
   const [visibleNav, setVisibleNav] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -48,16 +51,20 @@ const Headers = () => {
         </Link>
         <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
           <nav className={styles.nav}>
-            {nav.map((x, index) => (
-              <Link
-                className={styles.link}
-                // activeClassName={styles.active}
-                to={x.url}
-                key={index}
-              >
-                {x.title}
-              </Link>
-            ))}
+            {nav.map((x, index) => {
+              if (!wallet && x.url === "/profile") return null;
+
+              return (
+                <Link
+                  className={styles.link}
+                  // activeClassName={styles.active}
+                  to={x.url}
+                  key={index}
+                >
+                  {x.title}
+                </Link>
+              );
+            })}
           </nav>
           <form
             className={styles.search}

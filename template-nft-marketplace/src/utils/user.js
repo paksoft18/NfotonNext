@@ -1,6 +1,8 @@
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import * as web3 from "@solana/web3.js";
+import { programs } from "@metaplex/js";
+import axios from "axios";
 
 const TOKEN_METADATA_PROGRAM_ID = new web3.PublicKey(
   "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
@@ -8,6 +10,11 @@ const TOKEN_METADATA_PROGRAM_ID = new web3.PublicKey(
 
 export async function getUserNFTs(publicKey) {
   if (!publicKey) throw new WalletNotConnectedError();
+
+  const {
+    metadata: { Metadata },
+  } = programs;
+
   const connection = new web3.Connection("https://api.mainnet-beta.solana.com");
   const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
     publicKey,
@@ -36,7 +43,11 @@ export async function getUserNFTs(publicKey) {
         );
 
         const accountInfo = await connection.getParsedAccountInfo(pda);
-        allTokens.push(accountInfo);
+        const metadata = new Metadata(publicKey.toString(), accountInfo?.value);
+
+        const { data } = await axios.get(metadata.data.data.uri);
+
+        allTokens.push(data);
       }
     })
   );

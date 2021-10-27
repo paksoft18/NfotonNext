@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@metaplex/js": "^3.1.0",
+    "@solana/spl-token": "^0.1.8",
+    "@solana/wallet-adapter-base": "^0.6.0",
+    "@solana/wallet-adapter-material-ui": "^0.12.4",
+    "@solana/wallet-adapter-react": "^0.12.5",
+    "@solana/wallet-adapter-react-ui": "^0.5.1",
+    "@solana/wallet-adapter-wallets": "^0.10.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.24.0",
     "body-scroll-lock": "^3.1.5",
     "classnames": "^2.3.1",
     "node-sass": "^5.0.0",
@@ -21,7 +31,7 @@
     "use-dark-mode": "^2.3.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "(set PORT=3001 || export PORT=3001) && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -18,11 +18,13 @@ module.exports = {
       },
       {
         source: '/:path*',
-        destination: `${process.env.NEXT_PUBLIC_REACT_BASE_URI}/:path*`
+        //destination: `${process.env.NEXT_PUBLIC_REACT_BASE_URI}/:path*`
+        destination: `http://localhost:3001/:path*`
       },
       {
         source: '/',
-        destination: process.env.NEXT_PUBLIC_REACT_BASE_URI
+        //destination: process.env.NEXT_PUBLIC_REACT_BASE_URI
+        destination: `http://localhost:3001/`
       }
     ]
   }

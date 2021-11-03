@@ -1,12 +1,20 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Page from 'components/Page'
-
+import dynamic from 'next/dynamic'
 import '../styles/app.sass'
+import { ThemeProvider, createTheme } from '@material-ui/core'
+
+const WalletConnectionProvider = dynamic(
+  () => import('../providers/WalletConnectionProvider'),
+  {
+    ssr: false
+  }
+)
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <WalletConnectionProvider>
       <Head>
         <title>React Avançado - Boilerplate</title>
         <link rel="shortcut icon" href="/img/icon-512.png" />
@@ -18,10 +26,10 @@ function App({ Component, pageProps }: AppProps) {
           content="A simple project starter to work with TypeScript, React, NextJS and Styled Components"
         />
       </Head>
-      {/* <Page> */}
-      <Component {...pageProps} />
-      {/* </Page> */}
-    </>
+      <Page>
+        <Component {...pageProps} />
+      </Page>
+    </WalletConnectionProvider>
   )
 }
 

@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import cn from "classnames";
-import styles from "./Header.module.sass";
-import Icon from "../Icon";
-import Image from "../Image";
-import Notification from "./Notification";
-import User from "./User";
-import Connect from "../Connect";
-import { useAnchorWallet } from "@solana/wallet-adapter-react";
+import React, { useState } from 'react'
+import Link from 'next/link'
+import cn from 'classnames'
+import styles from './Header.module.sass'
+import Icon from '../Icon'
+import Image from '../Image'
+import Notification from './Notification'
+import Connect from '../Connect'
+import { useAnchorWallet } from '@solana/wallet-adapter-react'
 
 const nav = [
   //   {
@@ -15,32 +14,32 @@ const nav = [
   //     title: "Discover",
   //   },
   {
-    url: "/faq",
-    title: "How it work",
+    url: '/faq',
+    title: 'How it work'
   },
   //   {
   //     url: "/item",
   //     title: "Create item",
   //   },
   {
-    url: "/profile",
-    title: "Profile",
-  },
-];
+    url: '/profile',
+    title: 'Profile'
+  }
+]
 
 const Headers = () => {
-  const wallet = useAnchorWallet();
+  const wallet = useAnchorWallet()
 
-  const [visibleNav, setVisibleNav] = useState(false);
-  const [search, setSearch] = useState("");
+  const [visibleNav, setVisibleNav] = useState(false)
+  const [search, setSearch] = useState('')
 
-  const handleSubmit = (e) => {
-    alert();
-  };
+  const handleSubmit = () => {
+    alert()
+  }
 
   return (
     <header className={styles.header}>
-      <div className={cn("container", styles.container)}>
+      <div className={cn('container', styles.container)}>
         <Link className={styles.logo} to="/">
           <Image
             className={styles.pic}
@@ -52,7 +51,7 @@ const Headers = () => {
         <div className={cn(styles.wrapper, { [styles.active]: visibleNav })}>
           <nav className={styles.nav}>
             {nav.map((x, index) => {
-              if (!wallet && x.url === "/profile") return null;
+              if (!wallet && x.url === '/profile') return null
 
               return (
                 <Link
@@ -63,7 +62,7 @@ const Headers = () => {
                 >
                   {x.title}
                 </Link>
-              );
+              )
             })}
           </nav>
           <form
@@ -85,7 +84,7 @@ const Headers = () => {
             </button>
           </form>
           <Link
-            className={cn("button-small", styles.button)}
+            className={cn('button-small', styles.button)}
             to="/upload-variants"
           >
             Upload
@@ -99,7 +98,7 @@ const Headers = () => {
         ></button>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Headers;
+export default Headers
